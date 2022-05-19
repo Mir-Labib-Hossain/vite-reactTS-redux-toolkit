@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-// const ApiKey =
+
 interface IUser {
   id: number;
   email: string;
@@ -22,14 +22,15 @@ interface IUser {
   phone: string;
 }
 
-const apiSlice = createApi({
+export const apiSlice = createApi({
   reducerPath: "api",
-  baseQuery: fetchBaseQuery({ baseUrl: "https://fakestoreapi.com/" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "https://fakestoreapi.com" }),
   endpoints: (builder) => ({
     fetchUserNames: builder.query<IUser[], string>({
       query(limit = "10") {
-        return `users?limit=${limit}'`;
+        return `/users?limit=${limit}'`;
       },
     }),
   }),
 });
+export const { useFetchUserNamesQuery } = apiSlice;

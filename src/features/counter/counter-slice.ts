@@ -1,11 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface counterState {
-  value: number;
+  value1: number;
+  value10: number;
 }
 
 const initialState: counterState = {
-  value: 0,
+  value1: 0,
+  value10: 0,
 };
 
 const counterSlice = createSlice({
@@ -13,10 +15,10 @@ const counterSlice = createSlice({
   initialState,
   reducers: {
     incremented(state) {
-      state.value++;
+      state.value1++;
     },
     incremented5(state, action: PayloadAction<number>) {
-      state.value += action.payload;
+      state.value10 += action.payload;
     },
   },
 });
