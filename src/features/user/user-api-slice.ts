@@ -27,8 +27,10 @@ export const apiSlice = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: "https://fakestoreapi.com" }),
   endpoints: (builder) => ({
     fetchUserNames: builder.query<IUser[], string>({
-      query(limit = "10") {
-        return `/users?limit=${limit}'`;
+      query(limit = "5") {
+        console.log(limit);
+        
+        return `/users?limit=${limit}`;
       },
     }),
   }),

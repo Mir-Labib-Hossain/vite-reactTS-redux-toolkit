@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { incremented, incremented5 } from "./features/counter/counter-slice";
 import { useFetchUserNamesQuery } from "./features/user/user-api-slice";
 import { useAppDispatch, useAppSelector } from "./store/hooks";
@@ -7,19 +8,27 @@ function App() {
   const count10 = useAppSelector((state) => state.counterReducer.value10);
   const dispatch = useAppDispatch();
 
-  const { data = [], isFetching } = useFetchUserNamesQuery("idk");
   const handleCounter = () => {
     dispatch(incremented());
   };
-  const handleCounter5 = (num: number) => {
+  const handleCounter10 = (num: number) => {
     dispatch(incremented5(num));
   };
 
+  const [userNo, setUserNo] = useState("5");
+
+  const { data = [], isFetching } = useFetchUserNamesQuery(userNo);
   return (
     <div>
       <button onClick={handleCounter}>count is 1: {count1}</button>
-      <button onClick={() => handleCounter5(10)}>count is 10: {count10}</button>
-      <p> No of dog fetch {data.length}</p>
+      <button onClick={() => handleCounter10(10)}>count is 10: {count10}</button>
+      <p>
+        No of dog to fetch :
+        <select value={userNo} onChange={(e) => setUserNo(e.target.value)}>
+          <option value="5">5</option>
+          <option value="10">10</option>
+        </select>
+      </p>
       <table>
         <tbody>
           <tr>

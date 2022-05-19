@@ -10,6 +10,8 @@ export const store = configureStore({
       // check cache life time
       // if no other part of the project need this data 
       // then we can remove it from the cache
+      // to see this goto -> inspect -> network -> fetchXHR 
+      // and change the dropdown value of user no from app
     return getDefaultMiddleware().concat(apiSlice.middleware);
   },
 });
